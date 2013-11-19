@@ -24,11 +24,7 @@ LoadStore.prototype.removeId = function(id){
 LoadStore.prototype.getLoad = function(id){
   //No Id return the whole load store map with loads
   if(!id){
-    var servers = {};
-    for (var id in this.map){
-      servers[id] = this.orderedArray[this.map[id]];
-    };
-    return servers;
+      return this.orderedArray;
   }
 
   if(id in this.map)

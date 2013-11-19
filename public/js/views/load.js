@@ -17,18 +17,16 @@ define([
       
       var panel = $(".server_panel#"+ server.id);
       
-      if(panel.length < 1) return this.createNewServerPanel(server);
-      
+      if(panel.length < 1){ 
+        $("#dashboard").append("
+        return this.createNewServerPanel(server);
+     
+      }
       var html = Templates.server_panel({server: serverLoad});
 
       panel.html(html); 
 
     },
-    createNewServerPanel : function(server){
-      console.log("Creating new server", server);
-
-
-    }
   });
   return LoadView;
 });

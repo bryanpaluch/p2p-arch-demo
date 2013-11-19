@@ -8,21 +8,27 @@ function LoadExchange (options){
   this.seeds = options.seeds || [];
   this.port = options.port || 9742;
   this.loadStore = new LoadStore();
+  this.onUpdateCb = function(){};
+}
+LoadExchange.prototype.onUpdate = function(cb){
+  this.onUpdateCb = cb;
 }
 
 LoadExchange.prototype.updateLoad = function (load){
+  this.loadStore.setLoad(this.ip, load);
   this.gossipmonger.update(this.ip, load);
+  this.onUpdateCb();
 };
 
-LoadExchange.prototype.getServers = function(cb){
+LoadExchange.prototype.getServers = function(){
   return (this.loadStore.getLoad());
 };
 
-LoadExchange.prototype.getMostLoaded = function(cb){
+LoadExchange.prototype.getMostLoaded = function(){
   return (this.loadStore.getMostLoaded());
 };
 
-LoadExchange.prototype.getLeastLoaded = function(cb){
+LoadExchange.prototype.getLeastLoaded = function(){
   return (this.loadStore.getLeastLoaded());
 };
 LoadExchange.prototype.startService = function(cb){
@@ -76,15 +82,18 @@ LoadExchange.prototype.startService = function(cb){
 LoadExchange.prototype._onServerAdded = function(peer){
   console.log("new server added", peer);
   this.loadStore.setLoad(peer.id, 0);
+  this.onUpdateCb();
 };
 
 LoadExchange.prototype._onServerRemoved = function(peerId){
   console.log("server removed", peerId);
   this.loadStore.setLoad(peerId);
+  this.onUpdateCb();
 };
 
 LoadExchange.prototype._onClusterUpdate = function(peerId, key, value){
   this.loadStore.setLoad(peerId, value);
+  this.onUpdateCb();
 };
 
 module.exports = LoadExchange;

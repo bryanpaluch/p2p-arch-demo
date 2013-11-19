@@ -7,11 +7,7 @@ var express = require('express'),
   app = express(),
   http = require('http'), 
   rack = require('asset-rack');
-
-
-var server = http.createServer(app);
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+var server = http.createServer(app); app.configure(function(){ app.set('port', 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(new rack.JadeAsset({
@@ -34,6 +30,7 @@ app.configure('development', function(){
 var servers = {};
 
 app.get('/', function(req, res){
+  console.log("/ hit", servers);
   res.render('index', {servers: servers});
 });
 
@@ -53,8 +50,9 @@ io.sockets.on('connection', function(socket) {
 
 app.post("/serverLoad/:id", function(req, res){
   console.log("serverload hit", req.body);
-  servers.id = req.body;
-  io.sockets.emit('serverLoad', req.body);
+  servers[req.params.id] = {id: req.params.id, view: req.body};
+  io.sockets.emit('serverLoad', servers[req.params.id]);
+  res.send(200);
 });
 
 

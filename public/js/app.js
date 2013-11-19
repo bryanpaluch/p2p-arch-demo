@@ -16,8 +16,7 @@ require.config({
       exports: "Backbone"
     },
 
-    'bootstrap': { deps :['jquery'] }
-    ,
+    'bootstrap': { deps :['jquery'] },
   }
 });
 require([
@@ -30,6 +29,7 @@ require([
       console.log("Connected to socket.io");
       var dash = new DashView({events: io});
       io.on('serverLoad', function(server){
+        console.log("Hit serverload", server);
         dash.onServerLoad(server);
       });
       console.log(dash);

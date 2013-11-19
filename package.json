@@ -8,7 +8,9 @@
     "express": "~3.4.4",
     "socket.io": "~0.9.16",
     "optimist": "~0.6.0",
-    "gossipmonger": "~0.1.10"
+    "gossipmonger": "~0.1.10",
+    "request": "~2.27.0",
+    "jade": "~0.35.0"
   },
   "devDependencies": {},
   "scripts": {

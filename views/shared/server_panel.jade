@@ -1,9 +1,10 @@
 .panel.panel-primary.sensor_panel(id="#{server.id}")
   .panel-heading
-      .panel-title #{server.name}
+      .panel-title #{server.id}
 
   .panel-body
-    p #{server.load}
+    each endpoint, i in server.view
+      p Server: #{endpoint.id} Load: #{endpoint.load}
 
   .panel-footer
     button.btn.btn-default.btn-sm(href="/kill", 'data-toggle'='modal') kill
