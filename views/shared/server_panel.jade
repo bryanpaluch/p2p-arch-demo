@@ -1,0 +1,9 @@
+.panel.panel-primary.sensor_panel(id="#{server.id}")
+  .panel-heading
+      .panel-title #{server.name}
+
+  .panel-body
+    p #{server.load}
+
+  .panel-footer
+    button.btn.btn-default.btn-sm(href="/kill", 'data-toggle'='modal') kill
