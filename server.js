@@ -34,6 +34,11 @@ app.get('/', function(req, res){
   res.render('index', {servers: servers});
 });
 
+app.post("/job", function(req, res){
+  console.log("Got job request", req.body);
+
+  res.send(200);
+});
 // Start up socket.io
 
 io = require('socket.io').listen(server);

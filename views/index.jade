@@ -3,6 +3,11 @@ extends layout
 block content
   .container
     .row
+      #jobs
+        button.btn.btn-large.create_job Create Job
+    .row
+      p
+    .row
       #dashboard.col-sm-12
         each server, i in servers
           if ((i % 6) == 0)
