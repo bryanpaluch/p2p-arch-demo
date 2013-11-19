@@ -12,7 +12,7 @@ var server = http.createServer(app); app.configure(function(){ app.set('port', 3
   app.set('view engine', 'jade');
   app.use(new rack.JadeAsset({
     url: '/js/jadeTemplates.js',
-    dirname: __dirname + '/views'})
+    dirname: __dirname + '/views/shared'})
   );
   app.use(express.favicon());
   app.use(express.logger('dev'));

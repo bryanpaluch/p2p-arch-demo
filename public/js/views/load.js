@@ -15,15 +15,24 @@ define([
     },
     onServerLoad : function(server){
       
-      var panel = $(".server_panel#"+ server.id);
-      
-      if(panel.length < 1){ 
-        $("#dashboard").append("
-        return this.createNewServerPanel(server);
-     
-      }
-      var html = Templates.server_panel({server: serverLoad});
+      var serverid = server.id.replace(/\.|:/g, "x")
+      var panel = $(".server_panel#" +  serverid);
+      console.log(".server_panel#"+ serverid);
 
+      console.log("panel:", panel);
+      if(panel.length === 0){ 
+        console.log("Creating panel");
+        var panelcol = document.createElement("div");
+        panelcol.id = serverid;
+        panelcol.classList.add("server_panel");
+        panelcol.classList.add("col-sm-4");
+        $("#dashboard").append(panelcol);
+        panel = $(".server_panel#"+ serverid);
+        console.log("new panel:", panel);
+        console.log("new panel[0]:", panel[0]);
+      }
+      console.log(Templates);
+      var html = Templates['server_panel']({server: server}); 
       panel.html(html); 
 
     },

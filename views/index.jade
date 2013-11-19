@@ -7,8 +7,9 @@ block content
         each server, i in servers
           if ((i % 6) == 0)
             .row
-          .col-sm-4
+          - var serverid = server.id.replace(/\.|:/g, "x")
+          .col-sm-4.server_panel(id="#{serverid}")
             include shared/server_panel.jade
 
-block extrajs
+.col-sm-4block extrajs
   script(src="/js/libs/require.js", data-main='/js/app.js') 

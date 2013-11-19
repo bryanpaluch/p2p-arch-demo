@@ -1,7 +1,6 @@
-.panel.panel-primary.sensor_panel(id="#{server.id}")
+.panel.panel-primary
   .panel-heading
-      .panel-title #{server.id}
-
+    .panel-title #{server.id}
   .panel-body
     each endpoint, i in server.view
       p Server: #{endpoint.id} Load: #{endpoint.load}
