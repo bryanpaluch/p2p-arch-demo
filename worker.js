@@ -35,7 +35,7 @@ var load = 0;
 
 le.onUpdate(function(){
   var servers = le.getServers();
-  console.log("Got update", servers);
+  console.log("sending to main process", servers);
   request.post({url: "http://127.0.0.1:3000/serverLoad/" + "127.0.0.1:" + httpPort,
                 json: servers, timeout: 400}, function(e, r){
                   if(e) 

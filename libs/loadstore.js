@@ -9,14 +9,16 @@ function LoadStore(){
 LoadStore.prototype.setLoad = function(id, load){
   if(id in this.map){
     this.orderedArray[this.map[id]].load = load;
-  }else{ this.orderedArray.push({id: id, load: load});   
+  }else{ 
+    this.orderedArray.push({id: id, load: load});   
   }
   this.reSort();
 };
 LoadStore.prototype.removeId = function(id){
   if(id in this.map){
-    delete this.orderedArray[this.map[id]];
+    this.orderedArray.splice(this.map[id], 1) ;
     delete this.map[id];
+    console.log("finished removing id", id);
   }
 
   this.reSort();

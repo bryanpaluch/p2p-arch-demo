@@ -85,9 +85,9 @@ LoadExchange.prototype._onServerAdded = function(peer){
   this.onUpdateCb();
 };
 
-LoadExchange.prototype._onServerRemoved = function(peerId){
-  console.log("server removed", peerId);
-  this.loadStore.setLoad(peerId);
+LoadExchange.prototype._onServerRemoved = function(peer){
+  console.log("server removed", peer.id);
+  this.loadStore.removeId(peer.id);
   this.onUpdateCb();
 };
 
