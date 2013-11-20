@@ -43,7 +43,8 @@ LoadExchange.prototype.startService = function(cb){
         }
       },
       {
-        seeds: this.seeds
+        seeds: this.seeds,
+        "DEAD_PEER_PHI": 4
       }
     );
     
