@@ -35,14 +35,11 @@ var load = 0;
 
 le.onUpdate(function(){
   var servers = le.getServers();
-  console.log("sending to main process", servers);
   request.post({url: "http://127.0.0.1:3000/serverLoad/" + "127.0.0.1:" + httpPort,
                 json: servers, timeout: 400}, function(e, r){
                   if(e) 
                     console.log("ui server down...", e);
 
-
-                  console.log("Sent update to ui server");
                 });
 });
 
@@ -70,7 +67,7 @@ app.configure('development', function(){
 });
 
 app.get('/least_loaded', function(req, res){
-  res.json(le.getLeastLoaded);
+  res.json(le.getLeastLoaded());
 });
 
 app.post("/job", function(req, res){
@@ -83,4 +80,4 @@ app.post("/job", function(req, res){
   }, job.time);
   res.send(200);
 });
-
+app.listen(httpPort);

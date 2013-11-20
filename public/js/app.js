@@ -27,14 +27,15 @@ require([
     // Create a global to hold endpoint stuff that changes between deployments
     
     Connection.connect(function(io){
-      console.log("Connected to socket.io");
       var job = new JobView();
       var dash = new DashView({events: io});
       io.on('serverLoad', function(server){
-        console.log("Hit serverload", server);
         dash.onServerLoad(server);
       });
-      console.log(dash);
+      io.on('jobHit', function(server){
+        dash.onJobHit(server);
+      });
+
     });
 });
 

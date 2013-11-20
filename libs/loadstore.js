@@ -36,14 +36,14 @@ LoadStore.prototype.getLoad = function(id){
 };
 LoadStore.prototype.getLeastLoaded = function(id){
   if(this.orderedArray.length > 0)
-    return orderedArray[0];
+    return this.orderedArray[0];
   else
     return null;
 };
 
 LoadStore.prototype.getMostLoaded = function(id){
   if(this.orderedArray.length > 0)
-    return orderedArray[this.orderedArrray.length - 1];
+    return this.orderedArray[this.orderedArrray.length - 1];
   else
     return null;
 };
